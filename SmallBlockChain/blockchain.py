@@ -5,7 +5,7 @@ import requests
 from urllib.parse import urlparse
 from time import time
 from uuid import uuid4
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 class Blockchain(object):
     def __init__(self):
@@ -109,6 +109,15 @@ app = Flask(__name__)
 node_identifier = str(uuid4()).replace('-', '')
 
 blockchain = Blockchain()
+
+@app.route('/')
+def indexUI():
+    return render_template(
+        'index.html',
+        node_identifier=node_identifier,
+        chain=blockchain.chain,
+        chain_len=len(blockchain.chain),
+    )
 
 @app.route('/mine', methods=['GET'])
 def mine():

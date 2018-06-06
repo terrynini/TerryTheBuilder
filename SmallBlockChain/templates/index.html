@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SmallBlockChain</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="{{ url_for('static', filename='dist/css/vendor/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Loading Flat UI Pro -->
+    <link href="{{ url_for('static', filename='dist/css/flat-ui.css') }}" rel="stylesheet">
+
+  </head>
+  <body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <h3>current node id:</h3>
+                    <p>{{ node_identifier }}</p>
+                </div>
+                <div class="col-sm">
+                    <h3><strong>Length of chain:</strong></h3><p>{{ chain_len }}</p>
+                </div>
+            </div>
+                    {% for i in chain%}
+                        <div class="palette-item ">
+                            <dl class="palette {{ ['palette-peter-river', 'palette-belize-hole'][i.index%2] }}">
+                                <dt>index : {{ i.index }}</dt>
+                                <dd>proof : {{ i.proof }}</dd>
+                                <dd>previous hash : {{ i.previous_hash }}</dd>
+                            </dl>
+                        </div>
+                    {% endfor %}
+            </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 4 requires Popper.js -->
+    <script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+
+    <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+
+    <script src="{{ url_for('static', filename='dist/scripts/flat-ui.js') }}"></script>
+
+  </body>
+</html>
